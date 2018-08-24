@@ -10,14 +10,15 @@ def main():
         sys.exit()
 
     with open(filepath) as file:
-        f = open(sys.argv[1] + ".results", "w+")
+        f = open(sys.argv[1] + "-results.txt", "w+")
         for lineNumber, line in enumerate(file):
             lineDict = {}
 
             for index, key in enumerate(("RefChromosome", "RefPosition", "RefBase", "Coverage", "ReadBases", "ReadQuality")):   # Dictionary keys
                 lineDict[key] = line.strip().split('\t')[index]                                                         # Values are lists of strings
-            lineDict["Coverage"] = int(lineDict["Coverage"])
+            lineDict["Coverage"] = int(lineDict["Coverage"])                                                            # Cast coverage as int
 
+# Main logic
             mismatch_chars_only(lineDict)
             if len(lineDict["ReadQuality"]) > 0:
                     check_quality(lineDict)
