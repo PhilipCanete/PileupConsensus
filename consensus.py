@@ -29,6 +29,7 @@ def main():
             write_consensus(lineDict, lineDict["RefBase"],f)
 
     if f is not None:
+        print("Sucess! File created.")
         f.close()
 
 def write_consensus(lineDict, consensusBase,f):
